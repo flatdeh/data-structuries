@@ -1,91 +1,88 @@
+import java.util.Arrays;
 
 public class ArrayList<T> implements List {
-    private int size = 10;
-    private int capasity = 0;
+    private static final int INITIAL_CAPASITY = 10;
+    private int size;
     private T[] arrayList;
 
     public ArrayList() {
-        this.arrayList = (T[]) new Object[size];
+        this(INITIAL_CAPASITY);
     }
 
-    private void increase() {
-        size = size + 5;
-        T[] newArray = (T[]) new Object[size];
-        System.arraycopy(arrayList, 0, newArray, 0, capasity);
+    public ArrayList(int capasity) {
+        this.arrayList = (T[]) new Object[capasity];
+    }
+
+    private void increaseArrayList() {
+        T[] newArray = (T[]) new Object[(int) (arrayList.length * 1.5)];
+        System.arraycopy(arrayList, 0, newArray, 0, size);
         arrayList = newArray;
     }
 
-    private void reduce() {
-        size = size - 5;
-        T[] newArray = (T[]) new Object[size];
-        System.arraycopy(arrayList, 0, newArray, 0, capasity);
+    private void reduceArrayList() {
+        T[] newArray = (T[]) new Object[(int) (arrayList.length / 1.5)];
+        System.arraycopy(arrayList, 0, newArray, 0, size);
         arrayList = newArray;
+    }
+
+    private void validateIndex(int index) {
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + "(inclusive), but was : " + index);
+        }
     }
 
     public void add(Object value) {
-        if (capasity + 1 >= size) {
-            increase();
-        }
-        arrayList[capasity] = (T) value;
-        capasity++;
+        add(value, size);
     }
 
     public void add(Object value, int index) {
-        if (index < size) {
-            if (capasity + 1 >= size) {
-                increase();
-            }
-            T[] newArray = (T[]) new Object[size];
-            System.arraycopy(arrayList, 0, newArray, 0, index);
-            newArray[index] = (T) value;
-            System.arraycopy(arrayList, index, newArray, index + 1, size - index - 1);
-            arrayList = newArray;
-            capasity++;
-        } else {
-            throw new IndexOutOfBoundsException("\"index\" is larger than ArrayList size");
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + ", but was : " + index);
         }
+        if (size >= arrayList.length) {
+            increaseArrayList();
+        }
+        T[] newArray = (T[]) new Object[size + 1];
+        System.arraycopy(arrayList, 0, newArray, 0, index);
+        newArray[index] = (T) value;
+        System.arraycopy(arrayList, index, newArray, index + 1, size - index);
+        arrayList = newArray;
+        size++;
     }
 
     public T remove(int index) {
-        if (index < size) {
-            T obj = arrayList[index];
-            T[] newArray = (T[]) new Object[size];
-            System.arraycopy(arrayList, 0, newArray, 0, index);
-            System.arraycopy(arrayList, index + 1, newArray, index, size - index - 1);
-            arrayList = newArray;
-            capasity--;
+        validateIndex(index);
 
-            if (size > 10 && (size - capasity >= 5)) {
-                reduce();
-            }
-            return obj;
+        T valueToRemove = arrayList[index];
+        T[] newArray = (T[]) new Object[size - 1];
+        System.arraycopy(arrayList, 0, newArray, 0, index);
+        System.arraycopy(arrayList, index + 1, newArray, index, size - index - 1);
+        arrayList = newArray;
+        size--;
 
-        } else {
-            throw new IndexOutOfBoundsException("\"index\" is larger than ArrayList size");
+        if (size > 10 && (arrayList.length / size >= 1.5)) {
+            reduceArrayList();
         }
+
+        return valueToRemove;
     }
 
     public T get(int index) {
-        if (index < size) {
-            return arrayList[index];
-        } else {
-            throw new IndexOutOfBoundsException("\"index\" is larger than ArrayList size");
-        }
+        validateIndex(index);
+
+        return arrayList[index];
     }
 
     public T set(Object value, int index) {
-        if (index < size) {
-            T obj = arrayList[index];
-            arrayList[index] = (T) value;
-            return obj;
-        } else {
-            throw new IndexOutOfBoundsException("\"index\" is larger than ArrayList size");
-        }
+        validateIndex(index);
+
+        T oldValue = arrayList[index];
+        arrayList[index] = (T) value;
+        return oldValue;
     }
 
     public void clear() {
-        arrayList = (T[]) new Object[size];
-        capasity = 0;
+        arrayList = (T[]) new Object[INITIAL_CAPASITY];
     }
 
     public int size() {
@@ -93,21 +90,16 @@ public class ArrayList<T> implements List {
     }
 
     public boolean isEmpty() {
-        return capasity == 0 ? true : false;
+        return size != 0;
     }
 
     public boolean contains(Object value) {
-        for (T v : arrayList) {
-            if (v == (T) value) {
-                return true;
-            }
-        }
-        return false;
+        return indexOf((T) value) != -1;
     }
 
     public int indexOf(Object value) {
-        for (int i = 0; i <= capasity; i++) {
-            if (arrayList[i] == (T) value) {
+        for (int i = 0; i < size; i++) {
+            if (arrayList[i].equals((T) value)) {
                 return i;
             }
         }
@@ -116,8 +108,8 @@ public class ArrayList<T> implements List {
 
     public int lastIndexOf(Object value) {
         int index = -1;
-        for (int i = 0; i <= capasity; i++) {
-            if (arrayList[i] == (T) value) {
+        for (int i = 0; i < size; i++) {
+            if (arrayList[i].equals((T) value)) {
                 index = i;
             }
         }
@@ -125,11 +117,6 @@ public class ArrayList<T> implements List {
     }
 
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for (int i = 0; i <= capasity - 1; i++) {
-            stringBuilder.append("[" + (T) arrayList[i] + "] ");
-        }
-        return stringBuilder.toString();
+        return Arrays.toString(arrayList);
     }
 }
