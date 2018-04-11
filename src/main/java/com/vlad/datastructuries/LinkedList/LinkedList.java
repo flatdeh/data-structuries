@@ -7,14 +7,6 @@ public class LinkedList<T> implements List<T> {
     private Node tail;
     private int size;
 
-    public Node getTail() {
-        return tail;
-    }
-
-    public Node getHead() {
-        return head;
-    }
-
     public LinkedList() {
     }
 
