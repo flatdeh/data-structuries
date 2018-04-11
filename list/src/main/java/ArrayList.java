@@ -32,7 +32,7 @@ public class ArrayList<T> implements List {
     }
 
     public void add(Object value) {
-        add(value, size);
+        add((T) value, size);
     }
 
     public void add(Object value, int index) {
