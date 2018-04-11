@@ -83,6 +83,7 @@ public class ArrayList<T> implements List {
 
     public void clear() {
         arrayList = (T[]) new Object[INITIAL_CAPASITY];
+        size = 0;
     }
 
     public int size() {
