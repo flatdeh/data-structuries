@@ -10,19 +10,17 @@ public class LinkedListTest {
     public void testAdd() {
         LinkedList<String> linkedList = new LinkedList<String>();
 
+        linkedList.add("b", 0);
         linkedList.add("c");
-        linkedList.add("c");
-        linkedList.add("c");
-        linkedList.add("c");
+        linkedList.add("d");
         linkedList.add("a", 0);
-        linkedList.add("b", 1);
-
+        linkedList.add("e", 4);
 
         assertEquals("a", linkedList.get(0));
         assertEquals("b", linkedList.get(1));
         assertEquals("c", linkedList.get(2));
-        assertEquals("c", linkedList.get(3));
-        assertEquals("c", linkedList.get(4));
+        assertEquals("d", linkedList.get(3));
+        assertEquals("e", linkedList.get(4));
     }
 
     @Test
@@ -40,6 +38,7 @@ public class LinkedListTest {
 
         assertEquals("c", linkedList.get(0));
         assertEquals("d", linkedList.get(1));
+        assertEquals(2, linkedList.size());
     }
 
     @Test
@@ -57,15 +56,15 @@ public class LinkedListTest {
     @Test
     public void testSet() {
         LinkedList<String> linkedList = new LinkedList<String>();
-        linkedList.add("a");
-        assertEquals("a", linkedList.set("a1",0));
-        assertEquals("a1", linkedList.get(0));
+        linkedList.add("dsf");
+        assertEquals("dsf", linkedList.set("a",0));
+        assertEquals("a", linkedList.get(0));
 
         linkedList.add("b");
         linkedList.add("c");
         linkedList.add("d");
-        linkedList.add("e");
-        assertEquals("e", linkedList.get(4));
+        linkedList.add("errr");
+        assertEquals("errr", linkedList.set("e",4));
     }
 
     @Test

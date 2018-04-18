@@ -1,4 +1,4 @@
-package com.vlad.datastructuries.Stack;
+package com.vlad.datastructuries.stack;
 
 public class LinkedStack {
     public void push(Object value) {

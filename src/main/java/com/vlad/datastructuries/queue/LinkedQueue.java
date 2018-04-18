@@ -1,4 +1,4 @@
-package com.vlad.datastructuries.Queue;
+package com.vlad.datastructuries.queue;
 
 public class LinkedQueue {
     //private Node head;
