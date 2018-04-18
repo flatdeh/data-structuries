@@ -1,15 +1,39 @@
 package com.vlad.datastructuries.stack;
 
-public class LinkedStack {
-    public void push(Object value) {
+public class LinkedStack<T> {
+    private Node<T> head;
+    private T value;
+    private int size;
 
+    public void push(T value) {
+        Node<T> newNode = new Node<T>(value);
+        if (size == 0) {
+            head = newNode;
+        } else {
+            newNode.next = head;
+            head = newNode;
+        }
+        size++;
     }
 
-    public Object peek() {//вывести
-        return null;
+    public T peek() {
+        if (size == 0) {
+            throw new IndexOutOfBoundsException("Nothing to peek");
+        }
+        return head.value;
     }
 
-    public Object pop() { //вывести и удалить
-        return null;
+    public T pop() {
+        if (size == 0) {
+            throw new IndexOutOfBoundsException("Nothing to pop");
+        }
+        T value = head.value;
+        head = head.next;
+        size--;
+        return value;
+    }
+
+    public int getSize(){
+        return size;
     }
 }

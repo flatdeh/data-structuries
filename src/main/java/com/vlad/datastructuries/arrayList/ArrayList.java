@@ -73,7 +73,7 @@ public class ArrayList<T> implements List<T> {
     }
 
     public boolean isEmpty() {
-        return size != 0;
+        return size == 0;
     }
 
     public boolean contains(T value) {

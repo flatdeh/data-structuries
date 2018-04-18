@@ -39,6 +39,17 @@ public class LinkedListTest {
         assertEquals("c", linkedList.get(0));
         assertEquals("d", linkedList.get(1));
         assertEquals(2, linkedList.size());
+        assertEquals("c", linkedList.remove(0));
+        assertEquals("d", linkedList.remove(0));
+        assertEquals(0, linkedList.size());
+        linkedList.add("a");
+        linkedList.add("b");
+        linkedList.add("c");
+        linkedList.add("d",3);
+
+        assertEquals("a", linkedList.get(0));
+        assertEquals("c", linkedList.get(2));
+        assertEquals("d", linkedList.get(3));
     }
 
     @Test

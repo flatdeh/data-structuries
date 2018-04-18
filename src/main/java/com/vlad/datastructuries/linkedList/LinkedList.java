@@ -168,10 +168,10 @@ public class LinkedList<T> implements List<T> {
         stringBuilder.append("[");
         if (size > 0) {
             while (newNode.next != null) {
-                stringBuilder.append(newNode.value + ", ");
+                stringBuilder.append(newNode.value).append(", ");
                 newNode = newNode.next;
             }
-            stringBuilder.append(newNode.value + ", ");
+            stringBuilder.append(newNode.value).append(", ");
             stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
         }
         stringBuilder.append("]");
