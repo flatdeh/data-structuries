@@ -2,7 +2,7 @@ package com.vlad.datastructuries.arrayList;
 
 import org.junit.Test;
 
-public class testArrayList {
+public class ArrayListTest {
     @Test
     public void testAdd() {
     }
@@ -42,5 +42,5 @@ public class testArrayList {
     @Test
     public void testLastIndexOf() {
     }
-    
+
 }

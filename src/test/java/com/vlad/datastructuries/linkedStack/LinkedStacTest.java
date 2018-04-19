@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestLinkedStack {
+public class LinkedStacTest {
     @Test
     public void testPush() {
         LinkedStack<String> linkedStack = new LinkedStack<String>();
