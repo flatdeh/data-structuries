@@ -46,12 +46,13 @@ public class ArrayListTest {
     @Test
     public void testGet() {
         ArrayList<String> arrayList = new ArrayList<String>();
+        System.out.println(arrayList.toString());
         arrayList.add("a");
         arrayList.add("b");
         arrayList.add("c");
         arrayList.add("d");
         arrayList.add("e");
-
+        System.out.println(arrayList.toString());
         assertEquals("a", arrayList.get(0));
         assertEquals("b", arrayList.get(1));
         assertEquals("c", arrayList.get(2));
