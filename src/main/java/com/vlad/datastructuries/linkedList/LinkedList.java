@@ -171,22 +171,8 @@ public class LinkedList<T> implements List<T> {
                 newNode = newNode.next;
 
             }
-            result += arrayList[size - 1];
+            result += newNode.next.value;
         }
         return "[" + result + "]";
-//        Node newNode = head;
-//        StringBuilder stringBuilder = new StringBuilder();
-//        stringBuilder.append("[");
-//        if (size > 0) {
-//            while (newNode.next != null) {
-//                stringBuilder.append(newNode.value).append(", ");
-//                newNode = newNode.next;
-//            }
-//            stringBuilder.append(newNode.value).append(", ");
-//            stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
-//        }
-//        stringBuilder.append("]");
-//        return stringBuilder.toString();
-        return null;
     }
 }
