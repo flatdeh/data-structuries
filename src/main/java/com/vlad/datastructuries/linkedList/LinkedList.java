@@ -141,7 +141,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     public int indexOf(T value) {
-        Node curNode = head;
+        Node<T> curNode = head;
         for (int i = 0; i < size; i++) {
             if (curNode.value.equals(value)) {
                 return i;
@@ -152,7 +152,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     public int lastIndexOf(T value) {
-        Node curNode = tail;
+        Node<T> curNode = tail;
         for (int i = size - 1; i >= 0; i--) {
             if (curNode.value.equals(value)) {
                 return i;
@@ -163,7 +163,7 @@ public class LinkedList<T> implements List<T> {
     }
 
     public String toString() {
-        Node newNode = head;
+        Node<T> newNode = head;
         String result = "";
         if (size > 0) {
             for (int i = 0; i < size - 1; i++) {

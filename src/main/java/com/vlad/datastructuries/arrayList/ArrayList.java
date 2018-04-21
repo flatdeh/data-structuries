@@ -3,16 +3,16 @@ package com.vlad.datastructuries.arrayList;
 import com.vlad.datastructuries.List;
 
 public class ArrayList<T> implements List<T> {
-  private static final int INITIAL_CAPASITY = 10;
+  private static final int INITIAL_CAPACITY = 10;
   private int size;
   private T[] arrayList;
 
   public ArrayList() {
-    this(INITIAL_CAPASITY);
+    this(INITIAL_CAPACITY);
   }
 
-  public ArrayList(int capasity) {
-    this.arrayList = (T[]) new Object[capasity];
+  public ArrayList(int capacity) {
+    this.arrayList = (T[]) new Object[capacity];
   }
 
   private void increaseArrayList() {
