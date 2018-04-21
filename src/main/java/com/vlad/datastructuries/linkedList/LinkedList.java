@@ -169,7 +169,6 @@ public class LinkedList<T> implements List<T> {
             for (int i = 0; i < size - 1; i++) {
                 result += newNode.value + ", ";
                 newNode = newNode.next;
-
             }
             result += newNode.value;
         }
