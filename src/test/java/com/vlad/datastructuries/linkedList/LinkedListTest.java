@@ -11,10 +11,12 @@ public class LinkedListTest {
         LinkedList<String> linkedList = new LinkedList<String>();
 
         linkedList.add("b", 0);
-        linkedList.add("c");
+        linkedList.add("c", 1);
+        linkedList.add("a",0);
         linkedList.add("d");
-        linkedList.add("a", 0);
         linkedList.add("e", 4);
+
+        System.out.println(linkedList.toString());
 
         assertEquals("a", linkedList.get(0));
         assertEquals("b", linkedList.get(1));

@@ -171,7 +171,7 @@ public class LinkedList<T> implements List<T> {
                 newNode = newNode.next;
 
             }
-            result += newNode.next.value;
+            result += newNode.value;
         }
         return "[" + result + "]";
     }
