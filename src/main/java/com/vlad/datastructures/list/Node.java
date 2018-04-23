@@ -1,4 +1,4 @@
-package com.vlad.datastructuries.linkedList;
+package com.vlad.datastructures.list;
 
 public class Node<T> {
     Node<T> next;

@@ -1,24 +1,24 @@
-package com.vlad.datastructuries.arrayList;
+package com.vlad.datastructures.list;
 
-import com.vlad.datastructuries.List;
+import com.vlad.datastructures.list.List;
 
 public class ArrayList<T> implements List<T> {
     private static final int INITIAL_CAPACITY = 10;
     private int size;
-    private T[] arrayList;
+    private T[] array;
 
     public ArrayList() {
         this(INITIAL_CAPACITY);
     }
 
     public ArrayList(int capacity) {
-        this.arrayList = (T[]) new Object[capacity];
+        this.array = (T[]) new Object[capacity];
     }
 
     private void increaseArrayList() {
-        T[] newArray = (T[]) new Object[(int) (arrayList.length * 1.5)];
-        System.arraycopy(arrayList, 0, newArray, 0, size);
-        arrayList = newArray;
+        T[] newArray = (T[]) new Object[(int) (array.length * 1.5)];
+        System.arraycopy(array, 0, newArray, 0, size);
+        array = newArray;
     }
 
     private void validateIndex(int index) {
@@ -35,37 +35,38 @@ public class ArrayList<T> implements List<T> {
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + ", but was : " + index);
         }
-        if (size == arrayList.length) {
+        if (size == array.length) {
             increaseArrayList();
         }
-        System.arraycopy(arrayList, index, arrayList, index + 1, size - index);
-        arrayList[index] = value;
+        System.arraycopy(array, index, array, index + 1, size - index);
+        array[index] = value;
         size++;
     }
 
     public T remove(int index) {
         validateIndex(index);
-        T valueToRemove = arrayList[index];
-        System.arraycopy(arrayList, index + 1, arrayList, index, size - index);
+        T valueToRemove = array[index];
+        System.arraycopy(array, index + 1, array, index, size - index);
         size--;
         return valueToRemove;
     }
 
     public T get(int index) {
         validateIndex(index);
-        return arrayList[index];
+        return array[index];
     }
 
     public T set(T value, int index) {
         validateIndex(index);
 
-        T oldValue = arrayList[index];
-        arrayList[index] = value;
+        T oldValue = array[index];
+        array[index] = value;
         return oldValue;
     }
 
     public void clear() {
-        arrayList = (T[]) new Object[size];
+        array = (T[]) new Object[size];
+        size = 0;
     }
 
     public int size() {
@@ -82,7 +83,7 @@ public class ArrayList<T> implements List<T> {
 
     public int indexOf(T value) {
         for (int i = 0; i < size; i++) {
-            if (arrayList[i].equals(value)) {
+            if (array[i].equals(value)) {
                 return i;
             }
         }
@@ -91,7 +92,7 @@ public class ArrayList<T> implements List<T> {
 
     public int lastIndexOf(T value) {
         for (int i = size - 1; i >= 0; i--) {
-            if (arrayList[i].equals(value)) {
+            if (array[i].equals(value)) {
                 return i;
             }
         }
@@ -102,9 +103,9 @@ public class ArrayList<T> implements List<T> {
         String result = "";
         if (size > 0) {
             for (int i = 0; i < size - 1; i++) {
-                result += arrayList[i] + ", ";
+                result += array[i] + ", ";
             }
-            result += arrayList[size - 1];
+            result += array[size - 1];
         }
         return "[" + result + "]";
     }

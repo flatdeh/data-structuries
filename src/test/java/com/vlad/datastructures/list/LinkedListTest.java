@@ -1,5 +1,6 @@
-package com.vlad.datastructuries.linkedList;
+package com.vlad.datastructures.list;
 
+import com.vlad.datastructures.list.LinkedList;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

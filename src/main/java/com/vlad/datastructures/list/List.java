@@ -1,6 +1,6 @@
-package com.vlad.datastructuries;
+package com.vlad.datastructures.list;
 
-// com.vlad.datastructuries.List, Set, Map
+// com.vlad.datastructures.list.List, Set, Map
 public interface List<T> {
     // add value to the end of the list
     void add(T value);

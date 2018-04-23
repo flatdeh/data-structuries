@@ -1,4 +1,4 @@
-package com.vlad.datastructuries.stack;
+package com.vlad.datastructures.queue;
 
 public class Node<T> {
     Node<T> next;

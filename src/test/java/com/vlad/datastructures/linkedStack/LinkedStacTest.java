@@ -1,6 +1,6 @@
-package com.vlad.datastructuries.linkedStack;
+package com.vlad.datastructures.linkedStack;
 
-import com.vlad.datastructuries.stack.LinkedStack;
+import com.vlad.datastructures.stack.LinkedStack;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

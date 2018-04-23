@@ -1,6 +1,4 @@
-package com.vlad.datastructuries.linkedList;
-
-import com.vlad.datastructuries.List;
+package com.vlad.datastructures.list;
 
 public class LinkedList<T> implements List<T> {
     private Node<T> head;
@@ -16,90 +14,49 @@ public class LinkedList<T> implements List<T> {
 
     public void add(T value, int index) {
         if (index > size || index < 0) {
-            throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + ", but was : " + index);
+            throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + "(inclusive), but was : " + index);
         }
 
         Node<T> newNode = new Node<T>(value);
         if (size == 0) {
             head = tail = newNode;
-            size++;
-            return;
-        }
-
-        if (index == 0) {
+        } else if (index == 0) {
             newNode.next = head;
             head.prev = newNode;
             head = newNode;
-            size++;
-            return;
-        }
-
-        if (index == size) {
+        } else if (index == size) {
             tail.next = newNode;
             newNode.prev = tail;
             tail = newNode;
-            size++;
-            return;
+        } else {
+            Node<T> curNode = getNode(index);
+            newNode.prev = curNode.prev;
+            newNode.next = curNode;
+            curNode.prev.next = newNode;
+            curNode.prev = newNode;
         }
-
-        Node<T> curNode = getNodeByIndex(index);
-
-        newNode.prev = curNode.prev;
-        newNode.next = curNode;
-        curNode.prev.next = newNode;
-        curNode.prev = newNode;
-
         size++;
     }
 
-    private Node<T> getNodeByIndex(int index) {
-        Node<T> curNode;
-        if (index >= size / 2) {
-            curNode = tail;
-            for (int i = size; i > index + 1; i--) {
-                curNode = curNode.prev;
-            }
-        } else {
-            curNode = head;
-            for (int i = 0; i < index; i++) {
-                curNode = curNode.next;
-            }
-        }
-        return curNode;
-    }
-
     public T remove(int index) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + ", but was : " + index);
-        }
+        validateIndex(index);
 
-        Node<T> curNode = getNodeByIndex(index);
+        Node<T> curNode = getNode(index);
 
         T valueToRemove = curNode.value;
 
         if (size == 1) {
             head = tail = null;
-            size--;
-            return valueToRemove;
-        }
-
-        if (index == 0) {
+        } else if (index == 0) {
             head = head.next;
             head.prev = null;
-            size--;
-            return valueToRemove;
-        }
-
-        if (index == size - 1) {
+        } else if (index == size - 1) {
             tail = tail.prev;
             tail.next = null;
-            size--;
-            return valueToRemove;
+        } else {
+            curNode.next.prev = curNode.prev;
+            curNode.prev.next = curNode.next;
         }
-
-        curNode.next.prev = curNode.prev;
-        curNode.prev.next = curNode.next;
-
         size--;
         return valueToRemove;
     }
@@ -112,20 +69,20 @@ public class LinkedList<T> implements List<T> {
 
     public T get(int index) {
         validateIndex(index);
-        return getNodeByIndex(index).value;
+        return getNode(index).value;
     }
 
     public T set(T value, int index) {
         validateIndex(index);
-        Node<T> curNode = getNodeByIndex(index);
+        Node<T> curNode = getNode(index);
         T oldValue = curNode.value;
         curNode.value = value;
         return oldValue;
     }
 
     public void clear() {
-        size = 0;
         head = tail = null;
+        size = 0;
     }
 
     public int size() {
@@ -160,6 +117,22 @@ public class LinkedList<T> implements List<T> {
             curNode = curNode.prev;
         }
         return -1;
+    }
+
+    private Node<T> getNode(int index) {
+        Node<T> curNode;
+        if (index >= size / 2) {
+            curNode = tail;
+            for (int i = size; i > index + 1; i--) {
+                curNode = curNode.prev;
+            }
+        } else {
+            curNode = head;
+            for (int i = 0; i < index; i++) {
+                curNode = curNode.next;
+            }
+        }
+        return curNode;
     }
 
     public String toString() {

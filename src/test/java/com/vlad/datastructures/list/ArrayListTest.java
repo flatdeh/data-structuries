@@ -1,5 +1,6 @@
-package com.vlad.datastructuries.arrayList;
+package com.vlad.datastructures.list;
 
+import com.vlad.datastructures.list.ArrayList;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -94,7 +95,7 @@ public class ArrayListTest {
         arrayList.clear();
 
         assertNull(arrayList.get(0));
-
+        assertEquals(0, arrayList.size());
     }
 
     @Test

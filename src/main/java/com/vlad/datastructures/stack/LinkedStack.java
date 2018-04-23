@@ -1,4 +1,4 @@
-package com.vlad.datastructuries.stack;
+package com.vlad.datastructures.stack;
 
 public class LinkedStack<T> {
     private Node<T> head;

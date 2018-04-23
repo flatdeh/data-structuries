@@ -1,6 +1,6 @@
-package com.vlad.datastructuries.linkedQueue;
+package com.vlad.datastructures.linkedQueue;
 
-import com.vlad.datastructuries.queue.LinkedQueue;
+import com.vlad.datastructures.queue.LinkedQueue;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
