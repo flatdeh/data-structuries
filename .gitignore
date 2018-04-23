@@ -1,4 +1,5 @@
 .git
 .idea
+.gitignore
 target
-data-structuries.iml
+datastructures.iml
