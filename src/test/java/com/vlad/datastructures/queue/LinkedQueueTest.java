@@ -1,6 +1,5 @@
-package com.vlad.datastructures.linkedQueue;
+package com.vlad.datastructures.queue;
 
-import com.vlad.datastructures.queue.LinkedQueue;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -9,7 +8,7 @@ public class LinkedQueueTest {
 
     @Test
     public void testEnqueue() {
-        LinkedQueue<String> linkedQueue = new LinkedQueue<String>();
+        LinkedQueue<String> linkedQueue = new LinkedQueue<>();
         linkedQueue.enqueue("a");
         assertEquals("a",linkedQueue.toString());
         linkedQueue.enqueue("b");

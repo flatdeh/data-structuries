@@ -1,34 +1,35 @@
 package com.vlad.datastructures.stack;
 
+import java.util.NoSuchElementException;
+
 public class LinkedStack<T> {
-    private Node<T> head;
-    private T value;
+    private Node<T> tail;
     private int size;
 
     public void push(T value) {
-        Node<T> newNode = new Node<T>(value);
+        Node<T> newNode = new Node<>(value);
         if (size == 0) {
-            head = newNode;
+            tail = newNode;
         } else {
-            newNode.next = head;
-            head = newNode;
+            newNode.prev = tail;
+            tail = newNode;
         }
         size++;
     }
 
     public T peek() {
         if (size == 0) {
-            throw new IndexOutOfBoundsException("Nothing to peek");
+            throw new NoSuchElementException("Nothing to peek");
         }
-        return head.value;
+        return tail.value;
     }
 
     public T pop() {
         if (size == 0) {
-            throw new IndexOutOfBoundsException("Nothing to pop");
+            throw new NoSuchElementException("Nothing to pop");
         }
-        T value = head.value;
-        head = head.next;
+        T value = tail.value;
+        tail = tail.prev;
         size--;
         return value;
     }

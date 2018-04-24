@@ -1,11 +1,10 @@
-package com.vlad.datastructures.linkedStack;
+package com.vlad.datastructures.stack;
 
-import com.vlad.datastructures.stack.LinkedStack;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class LinkedStacTest {
+public class LinkedStackTest {
     @Test
     public void testPush() {
         LinkedStack<String> linkedStack = new LinkedStack<String>();

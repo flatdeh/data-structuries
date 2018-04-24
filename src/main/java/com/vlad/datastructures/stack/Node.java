@@ -1,7 +1,7 @@
 package com.vlad.datastructures.stack;
 
 public class Node<T> {
-    Node<T> next;
+    Node<T> prev;
     T value;
 
     public Node() {

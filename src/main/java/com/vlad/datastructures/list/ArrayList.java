@@ -1,10 +1,7 @@
 package com.vlad.datastructures.list;
 
-import com.vlad.datastructures.list.List;
-
-public class ArrayList<T> implements List<T> {
+public class ArrayList<T> extends AbsList<T> {
     private static final int INITIAL_CAPACITY = 10;
-    private int size;
     private T[] array;
 
     public ArrayList() {
@@ -19,12 +16,6 @@ public class ArrayList<T> implements List<T> {
         T[] newArray = (T[]) new Object[(int) (array.length * 1.5)];
         System.arraycopy(array, 0, newArray, 0, size);
         array = newArray;
-    }
-
-    private void validateIndex(int index) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + "(inclusive), but was : " + index);
-        }
     }
 
     public void add(T value) {
@@ -65,20 +56,10 @@ public class ArrayList<T> implements List<T> {
     }
 
     public void clear() {
-        array = (T[]) new Object[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = null;
+        }
         size = 0;
-    }
-
-    public int size() {
-        return size;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    public boolean contains(T value) {
-        return indexOf(value) != -1;
     }
 
     public int indexOf(T value) {

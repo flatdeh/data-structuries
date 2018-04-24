@@ -1,6 +1,5 @@
 package com.vlad.datastructures.list;
 
-import com.vlad.datastructures.list.ArrayList;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -15,6 +14,7 @@ public class ArrayListTest {
         arrayList.add("e", 3);
         arrayList.add("a", 0);
         assertEquals(5, arrayList.size());
+        System.out.println(arrayList.toString());
 
         assertEquals("a", arrayList.get(0));
         assertEquals("b", arrayList.get(1));
@@ -94,7 +94,6 @@ public class ArrayListTest {
 
         arrayList.clear();
 
-        assertNull(arrayList.get(0));
         assertEquals(0, arrayList.size());
     }
 

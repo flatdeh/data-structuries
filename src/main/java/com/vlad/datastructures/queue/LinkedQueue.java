@@ -1,6 +1,9 @@
 package com.vlad.datastructures.queue;
 
+import java.util.NoSuchElementException;
+
 public class LinkedQueue<T> {
+    private Node<T> tail;
     private Node<T> head;
     private int size;
 
@@ -8,22 +11,19 @@ public class LinkedQueue<T> {
     }
 
     public void enqueue(T value) {
-        Node<T> newNode = new Node<T>(value);
+        Node<T> newNode = new Node<>(value);
         if (size == 0) {
-            head = newNode;
+            head = tail = newNode;
         } else {
-            Node<T> curNode = head;
-            while (curNode.next != null) {
-                curNode = curNode.next;
-            }
-            curNode.next = newNode;
+            tail.next = newNode;
+            tail = tail.next;
         }
         size++;
     }
 
     public T dequeue() {
         if (size == 0) {
-            throw new IndexOutOfBoundsException("Queue size = 0");
+            throw new NoSuchElementException("Queue size = 0");
         }
         T headValue = head.value;
         head = head.next;
