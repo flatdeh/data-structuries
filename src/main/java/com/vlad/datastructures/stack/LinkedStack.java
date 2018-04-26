@@ -6,6 +6,10 @@ public class LinkedStack<T> extends AbstractStack<T> {
     private Node<T> tail;
     private int size;
 
+    LinkedStack() {
+
+    }
+
     public void push(T value) {
         Node<T> newNode = new Node<>(value);
         if (size == 0) {

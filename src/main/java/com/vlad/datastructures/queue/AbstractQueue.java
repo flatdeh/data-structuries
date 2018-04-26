@@ -1,6 +1,6 @@
 package com.vlad.datastructures.queue;
 
-import com.vlad.datastructures.AbstractDataStructures;
+import com.vlad.datastructures.AbstractArray;
 
-public abstract class AbstractQueue<T> extends AbstractDataStructures implements Queue<T> {
+public abstract class AbstractQueue<T> extends AbstractArray implements Queue<T> {
 }

@@ -1,9 +1,9 @@
 package com.vlad.datastructures.list;
 
-import com.vlad.datastructures.AbstractDataStructures;
+import com.vlad.datastructures.AbstractArray;
 
-public abstract class AbstractList<T> extends AbstractDataStructures implements List<T> {
-    public int size;
+public abstract class AbstractList<T> extends AbstractArray<T> implements List<T> {
+
 
     public void validateIndex(int index) {
         if (index >= size || index < 0) {

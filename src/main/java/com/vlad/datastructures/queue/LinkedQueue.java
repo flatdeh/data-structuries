@@ -7,7 +7,7 @@ public class LinkedQueue<T> extends AbstractQueue<T> {
     private Node<T> head;
     private int size;
 
-    public LinkedQueue() {
+    LinkedQueue() {
     }
 
     public void enqueue(T value) {

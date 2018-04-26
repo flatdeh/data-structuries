@@ -1,22 +1,15 @@
 package com.vlad.datastructures.list;
 
 public class ArrayList<T> extends AbstractList<T> {
-    private static final int INITIAL_CAPACITY = 10;
-    private T[] array;
 
-    public ArrayList() {
+    ArrayList() {
         this(INITIAL_CAPACITY);
     }
 
-    public ArrayList(int capacity) {
+    private ArrayList(int capacity) {
         this.array = (T[]) new Object[capacity];
     }
 
-    private void increaseArrayList() {
-        T[] newArray = (T[]) new Object[(int) (array.length * 1.5)];
-        System.arraycopy(array, 0, newArray, 0, size);
-        array = newArray;
-    }
 
     public void add(T value) {
         add(value, size);
@@ -27,7 +20,7 @@ public class ArrayList<T> extends AbstractList<T> {
             throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + ", but was : " + index);
         }
         if (size == array.length) {
-            increaseArrayList();
+            increaseArray();
         }
         System.arraycopy(array, index, array, index + 1, size - index);
         array[index] = value;

@@ -4,7 +4,7 @@ public class LinkedList<T> extends AbstractList<T> {
     private Node<T> head;
     private Node<T> tail;
 
-    public LinkedList() {
+    LinkedList() {
     }
 
     public void add(T value) {

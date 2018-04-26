@@ -1,6 +1,6 @@
 package com.vlad.datastructures.stack;
 
-import com.vlad.datastructures.AbstractDataStructures;
+import com.vlad.datastructures.AbstractArray;
 
-public abstract class AbstractStack<T> extends AbstractDataStructures implements Stack<T> {
+public abstract class AbstractStack<T> extends AbstractArray implements Stack<T> {
 }
