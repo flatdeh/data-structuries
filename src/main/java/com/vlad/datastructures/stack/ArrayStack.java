@@ -2,7 +2,7 @@ package com.vlad.datastructures.stack;
 
 import java.util.NoSuchElementException;
 
-public class ArrayStack<T> implements Stack<T> {
+public class ArrayStack<T> extends AbstractStack<T> {
     private static final int INITIAL_CAPACITY = 10;
     private T[] array = (T[]) new Object[INITIAL_CAPACITY];
     private int size;

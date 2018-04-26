@@ -2,7 +2,7 @@ package com.vlad.datastructures.stack;
 
 import java.util.NoSuchElementException;
 
-public class LinkedStack<T> implements Stack<T> {
+public class LinkedStack<T> extends AbstractStack<T> {
     private Node<T> tail;
     private int size;
 

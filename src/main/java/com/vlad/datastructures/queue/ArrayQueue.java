@@ -2,7 +2,7 @@ package com.vlad.datastructures.queue;
 
 import java.util.NoSuchElementException;
 
-public class ArrayQueue<T> implements Queue<T> {
+public class ArrayQueue<T> extends AbstractQueue<T> {
     private final static int INITIAL_CAPACITY = 10;
     private T[] array = (T[]) new Object[INITIAL_CAPACITY];
     private int size;
