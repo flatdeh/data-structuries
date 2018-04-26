@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 public class LinkedQueue<T> extends AbstractQueue<T> {
     private Node<T> tail;
     private Node<T> head;
-    private int size;
+
 
     LinkedQueue() {
     }

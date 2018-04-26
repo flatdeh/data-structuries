@@ -4,8 +4,7 @@ import com.vlad.datastructures.AbstractArray;
 
 public abstract class AbstractList<T> extends AbstractArray<T> implements List<T> {
 
-
-    public void validateIndex(int index) {
+    protected void validateIndex(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + "(inclusive), but was : " + index);
         }
