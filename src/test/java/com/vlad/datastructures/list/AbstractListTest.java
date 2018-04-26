@@ -7,7 +7,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public abstract class AbstractListTest {
-    List list = getList();
+    private List<String> list = getList();
 
     public abstract List getList();
 
