@@ -3,9 +3,8 @@ package com.vlad.datastructures.queue;
 import java.util.NoSuchElementException;
 
 public class LinkedQueue<T> extends AbstractQueue<T> {
-    private Node<T> tail;
     private Node<T> head;
-
+    private Node<T> tail;
 
     LinkedQueue() {
     }

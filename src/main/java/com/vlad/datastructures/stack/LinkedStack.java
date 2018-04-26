@@ -4,7 +4,6 @@ import java.util.NoSuchElementException;
 
 public class LinkedStack<T> extends AbstractStack<T> {
     private Node<T> tail;
-    private int size;
 
     LinkedStack() {
 
