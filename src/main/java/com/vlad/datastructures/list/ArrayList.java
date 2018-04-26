@@ -1,6 +1,6 @@
 package com.vlad.datastructures.list;
 
-public class ArrayList<T> extends AbsList<T> {
+public class ArrayList<T> extends AbstractList<T> {
     private static final int INITIAL_CAPACITY = 10;
     private T[] array;
 

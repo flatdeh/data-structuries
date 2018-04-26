@@ -11,7 +11,7 @@ public class LinkedStackTest {
         linkedStack.push("a");
         linkedStack.push("b");
         linkedStack.push("c");
-        assertEquals(3,linkedStack.getSize());
+        assertEquals(3, linkedStack.getSize());
     }
 
     @Test
@@ -23,7 +23,7 @@ public class LinkedStackTest {
 
         assertEquals("c", linkedStack.peek());
         assertEquals("c", linkedStack.peek());
-        assertEquals(3,linkedStack.getSize());
+        assertEquals(3, linkedStack.getSize());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class LinkedStackTest {
         assertEquals("c", linkedStack.pop());
         assertEquals("b", linkedStack.pop());
         assertEquals("a", linkedStack.pop());
-        assertEquals(0,linkedStack.getSize());
+        assertEquals(0, linkedStack.getSize());
     }
 
     @Test
@@ -48,6 +48,6 @@ public class LinkedStackTest {
 
         assertEquals("c", linkedStack.pop());
         assertEquals("b", linkedStack.pop());
-        assertEquals(1,linkedStack.getSize());
+        assertEquals(1, linkedStack.getSize());
     }
 }

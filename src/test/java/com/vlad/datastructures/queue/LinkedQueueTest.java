@@ -10,11 +10,11 @@ public class LinkedQueueTest {
     public void testEnqueue() {
         LinkedQueue<String> linkedQueue = new LinkedQueue<>();
         linkedQueue.enqueue("a");
-        assertEquals("a",linkedQueue.toString());
+        assertEquals("a", linkedQueue.toString());
         linkedQueue.enqueue("b");
         linkedQueue.enqueue("c");
-        assertEquals("abc",linkedQueue.toString());
-        assertEquals(3,linkedQueue.getSize());
+        assertEquals("abc", linkedQueue.toString());
+        assertEquals(3, linkedQueue.getSize());
     }
 
     @Test
@@ -23,11 +23,11 @@ public class LinkedQueueTest {
         linkedQueue.enqueue("a");
         linkedQueue.enqueue("b");
         linkedQueue.enqueue("c");
-        assertEquals("a",linkedQueue.dequeue());
-        assertEquals("b",linkedQueue.dequeue());
-        assertEquals("c",linkedQueue.dequeue());
+        assertEquals("a", linkedQueue.dequeue());
+        assertEquals("b", linkedQueue.dequeue());
+        assertEquals("c", linkedQueue.dequeue());
 
-        assertEquals("",linkedQueue.toString());
+        assertEquals("", linkedQueue.toString());
     }
 
     @Test
@@ -36,11 +36,11 @@ public class LinkedQueueTest {
         linkedQueue.enqueue("a");
         linkedQueue.enqueue("b");
         linkedQueue.enqueue("c");
-        assertEquals("a",linkedQueue.dequeue());
-        assertEquals("b",linkedQueue.dequeue());
-        assertEquals("c",linkedQueue.dequeue());
+        assertEquals("a", linkedQueue.dequeue());
+        assertEquals("b", linkedQueue.dequeue());
+        assertEquals("c", linkedQueue.dequeue());
 
-        assertEquals("",linkedQueue.toString());
-        assertEquals(0,linkedQueue.getSize());
+        assertEquals("", linkedQueue.toString());
+        assertEquals(0, linkedQueue.getSize());
     }
 }

@@ -25,7 +25,7 @@ public class ArrayStack<T> implements Stack<T> {
     @Override
     public T peek() {
         if (size == 0) {
-            throw new NoSuchElementException("Nothing to peek");
+            throw new NoSuchElementException("Nothing to peek, size = 0");
         }
         return array[size - 1];
     }
@@ -33,7 +33,7 @@ public class ArrayStack<T> implements Stack<T> {
     @Override
     public T pop() {
         if (size == 0) {
-            throw new NoSuchElementException("Nothing to pop");
+            throw new NoSuchElementException("Nothing to pop, size = 0");
         }
         T value = array[size - 1];
         array[size - 1] = null;

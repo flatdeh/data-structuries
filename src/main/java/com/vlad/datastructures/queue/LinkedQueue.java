@@ -23,7 +23,7 @@ public class LinkedQueue<T> {
 
     public T dequeue() {
         if (size == 0) {
-            throw new NoSuchElementException("Queue size = 0");
+            throw new NoSuchElementException("Queue is empty");
         }
         T headValue = head.value;
         head = head.next;

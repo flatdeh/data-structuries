@@ -33,7 +33,7 @@ public class ArrayStackTest {
     }
 
     @Test
-    public void testPeek(){
+    public void testPeek() {
         ArrayStack<String> arrayStack = new ArrayStack<>();
         arrayStack.push("a");
         arrayStack.push("b");

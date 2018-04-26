@@ -102,9 +102,9 @@ public class ArrayListTest {
         ArrayList<String> arrayList = new ArrayList<String>();
         arrayList.add("1");
         arrayList.add("2");
-        arrayList.add("3",0);
+        arrayList.add("3", 0);
         arrayList.add("4");
-        arrayList.add("5",2);
+        arrayList.add("5", 2);
         arrayList.remove(0);
         arrayList.remove(1);
         arrayList.remove(1);
@@ -119,9 +119,9 @@ public class ArrayListTest {
         assertTrue(arrayList.isEmpty());
         arrayList.add("1");
         arrayList.add("2");
-        arrayList.add("3",0);
+        arrayList.add("3", 0);
         arrayList.add("4");
-        arrayList.add("5",2);
+        arrayList.add("5", 2);
         assertFalse(arrayList.isEmpty());
 
     }

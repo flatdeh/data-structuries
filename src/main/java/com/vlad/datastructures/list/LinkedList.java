@@ -1,6 +1,6 @@
 package com.vlad.datastructures.list;
 
-public class LinkedList<T> extends AbsList<T> {
+public class LinkedList<T> extends AbstractList<T> {
     private Node<T> head;
     private Node<T> tail;
 
@@ -16,7 +16,7 @@ public class LinkedList<T> extends AbsList<T> {
             throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + "(inclusive), but was : " + index);
         }
 
-        Node<T> newNode = new Node<T>(value);
+        Node<T> newNode = new Node<>(value);
         if (size == 0) {
             head = tail = newNode;
         } else if (index == 0) {
