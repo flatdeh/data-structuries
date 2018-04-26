@@ -6,7 +6,6 @@ public class Node<T> {
     T value;
 
     public Node() {
-
     }
 
     public Node(T value) {

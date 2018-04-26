@@ -1,9 +1,8 @@
 package com.vlad.datastructures.queue;
 
-public class LinkedQueueTest extends AbstractQueueTest{
-    @Override
-    public Queue getQueue() {
-        return new LinkedQueue();
-    }
-
+public class LinkedQueueTest extends AbstractQueueTest {
+  @Override
+  public Queue<String> getQueue() {
+    return new LinkedQueue<String>();
+  }
 }
