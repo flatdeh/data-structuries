@@ -2,7 +2,7 @@ package com.vlad.datastructures.stack;
 
 import java.util.NoSuchElementException;
 
-public class LinkedStack<T> {
+public class LinkedStack<T> implements Stack<T> {
     private Node<T> tail;
     private int size;
 
@@ -34,7 +34,7 @@ public class LinkedStack<T> {
         return value;
     }
 
-    public int getSize(){
+    public int getSize() {
         return size;
     }
 }

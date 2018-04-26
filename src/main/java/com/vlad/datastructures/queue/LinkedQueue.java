@@ -2,7 +2,7 @@ package com.vlad.datastructures.queue;
 
 import java.util.NoSuchElementException;
 
-public class LinkedQueue<T> {
+public class LinkedQueue<T> implements Queue<T> {
     private Node<T> tail;
     private Node<T> head;
     private int size;
@@ -35,16 +35,5 @@ public class LinkedQueue<T> {
         return size;
     }
 
-    public String toString() {
-        String result = "";
-        if (size != 0) {
-            Node<T> curNode = head;
-            while (curNode.next != null) {
-                result += curNode.value.toString();
-                curNode = curNode.next;
-            }
-            result += curNode.value.toString();
-        }
-        return result;
-    }
+
 }
