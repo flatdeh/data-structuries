@@ -4,12 +4,6 @@ public class ArrayList<T> extends AbstractList<T> {
     private static final int INITIAL_CAPACITY = 10;
     private T[] array = (T[]) new Object[INITIAL_CAPACITY];
 
-    protected void increaseArray() {
-        T[] newArray = (T[]) new Object[(int) (array.length * 1.5)];
-        System.arraycopy(array, 0, newArray, 0, size);
-        array = newArray;
-    }
-
     ArrayList() {
         this(INITIAL_CAPACITY);
     }
@@ -79,6 +73,12 @@ public class ArrayList<T> extends AbstractList<T> {
             }
         }
         return -1;
+    }
+
+    private void increaseArray() {
+        T[] newArray = (T[]) new Object[(int) (array.length * 1.5)];
+        System.arraycopy(array, 0, newArray, 0, size);
+        array = newArray;
     }
 
     public String toString() {

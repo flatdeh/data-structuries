@@ -2,12 +2,12 @@ package com.vlad.datastructures.stack;
 
 import java.util.NoSuchElementException;
 
-public class ArrayStack<T> extends AbstractStack<T> {
+public class ArrayStack<T> implements Stack<T> {
     private static final int INITIAL_CAPACITY = 10;
     private T[] array = (T[]) new Object[INITIAL_CAPACITY];
     private int size;
 
-    protected void increaseArray() {
+    private void increaseArray() {
         T[] newArray = (T[]) new Object[(int) (array.length * 1.5)];
         System.arraycopy(array, 0, newArray, 0, size);
         array = newArray;
@@ -29,7 +29,7 @@ public class ArrayStack<T> extends AbstractStack<T> {
         if (size == 0) {
             throw new NoSuchElementException("Nothing to peek, size = 0");
         }
-        return (T) array[size - 1];
+        return array[size - 1];
     }
 
     @Override
