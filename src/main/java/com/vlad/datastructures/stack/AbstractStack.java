@@ -1,7 +1,5 @@
 package com.vlad.datastructures.stack;
 
-import com.vlad.datastructures.AbstractArray;
-
-public abstract class AbstractStack<T> extends AbstractArray implements Stack<T> {
+public abstract class AbstractStack<T> implements Stack<T> {
     protected int size;
 }

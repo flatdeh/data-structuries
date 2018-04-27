@@ -28,6 +28,16 @@ public abstract class AbstractListTest {
         assertEquals("e", list.get(4));
     }
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddWithNegativeIndex() {
+        list.add("a",-1);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddToTheEnd() {
+        list.add("a", 1);
+    }
+
     @Test
     public void testRemove() {
         list.add("a");
@@ -48,7 +58,7 @@ public abstract class AbstractListTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testRemoveWithNegativeElements() {
+    public void testRemoveWithNegativeIndex() {
         list.remove(-1);
     }
 
