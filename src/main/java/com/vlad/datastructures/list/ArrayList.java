@@ -21,12 +21,16 @@ public class ArrayList<T> extends AbstractList<T> {
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + ", but was : " + index);
         }
+        if (value == null) {
+            throw new NullPointerException("Value can not be Null");
+        }
         if (size == array.length) {
             increaseArray();
         }
         System.arraycopy(array, index, array, index + 1, size - index);
         array[index] = value;
         size++;
+
     }
 
     public T remove(int index) {
@@ -43,10 +47,14 @@ public class ArrayList<T> extends AbstractList<T> {
     }
 
     public T set(T value, int index) {
+        if (value == null) {
+            throw new NullPointerException("Value can not be Null");
+        }
         validateIndex(index);
 
         T oldValue = array[index];
         array[index] = value;
+
         return oldValue;
     }
 
@@ -82,13 +90,18 @@ public class ArrayList<T> extends AbstractList<T> {
     }
 
     public String toString() {
-        String result = "";
+        StringBuilder sb = new StringBuilder();
+
         if (size > 0) {
+            sb.append("[");
             for (int i = 0; i < size - 1; i++) {
-                result += array[i] + ", ";
+                sb.append(array[i]).append(", ");
             }
-            result += array[size - 1];
+            sb.append(array[size - 1]).append("]");
+        } else {
+            sb.append("[]");
         }
-        return "[" + result + "]";
+
+        return sb.toString();
     }
 }

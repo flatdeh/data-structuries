@@ -17,6 +17,9 @@ public class ArrayStack<T> implements Stack<T> {
 
     @Override
     public void push(T value) {
+        if (value == null) {
+            throw new NullPointerException("Value can not be Null");
+        }
         if (size == array.length) {
             increaseArray();
         }

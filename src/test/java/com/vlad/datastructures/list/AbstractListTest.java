@@ -262,4 +262,14 @@ public abstract class AbstractListTest {
         assertEquals(-1, list.lastIndexOf("aaaa"));
         assertEquals(4, list.size());
     }
+
+    @Test
+    public void testToString() {
+        list.add("a");
+        list.add("b");
+        list.add("b");
+        list.add("d");
+
+        System.out.println(list.toString());
+    }
 }

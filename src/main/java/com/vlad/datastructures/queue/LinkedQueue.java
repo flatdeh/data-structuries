@@ -11,6 +11,9 @@ public class LinkedQueue<T> implements Queue<T> {
     }
 
     public void enqueue(T value) {
+        if (value == null) {
+            throw new NullPointerException("Value can not be Null");
+        }
         Node<T> newNode = new Node<>(value);
         if (size == 0) {
             head = tail = newNode;
@@ -34,6 +37,5 @@ public class LinkedQueue<T> implements Queue<T> {
     public int getSize() {
         return size;
     }
-
 
 }

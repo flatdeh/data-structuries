@@ -12,6 +12,9 @@ public class ArrayQueue<T> implements Queue<T> {
 
     @Override
     public void enqueue(T value) {
+        if (value == null) {
+            throw new NullPointerException("Value can not be Null");
+        }
         if (size == array.length) {
             increaseArray();
         }

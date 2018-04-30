@@ -16,6 +16,10 @@ public class LinkedList<T> extends AbstractList<T> {
             throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + "(inclusive), but was : " + index);
         }
 
+        if (value == null) {
+            throw new NullPointerException("Value can not be Null");
+        }
+
         Node<T> newNode = new Node<>(value);
         if (size == 0) {
             head = tail = newNode;
@@ -66,6 +70,9 @@ public class LinkedList<T> extends AbstractList<T> {
     }
 
     public T set(T value, int index) {
+        if (value == null) {
+            throw new NullPointerException("Value can not be Null");
+        }
         validateIndex(index);
         Node<T> curNode = getNode(index);
         T oldValue = curNode.value;
@@ -127,14 +134,17 @@ public class LinkedList<T> extends AbstractList<T> {
 
     public String toString() {
         Node<T> newNode = head;
-        String result = "";
+        StringBuilder sb = new StringBuilder();
         if (size > 0) {
+            sb.append("[");
             for (int i = 0; i < size - 1; i++) {
-                result += newNode.value + ", ";
+                sb.append(newNode.value).append(", ");
                 newNode = newNode.next;
             }
-            result += newNode.value;
+            sb.append(newNode.value).append("]");
+        } else {
+            sb.append("[]");
         }
-        return "[" + result + "]";
+        return sb.toString();
     }
 }

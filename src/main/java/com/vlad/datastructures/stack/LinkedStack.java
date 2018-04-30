@@ -11,6 +11,9 @@ public class LinkedStack<T> implements Stack<T> {
     }
 
     public void push(T value) {
+        if (value == null) {
+            throw new NullPointerException("Value can not be Null");
+        }
         Node<T> newNode = new Node<>(value);
         if (size == 0) {
             tail = newNode;
