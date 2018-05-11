@@ -44,4 +44,18 @@ public class LinkedStack<T> implements Stack<T> {
     public int getSize() {
         return size;
     }
+
+    private static class Node<T> {
+        private Node<T> prev;
+        private T value;
+
+        private Node() {
+        }
+
+        private Node(T value) {
+            this.value = value;
+        }
+    }
+
+
 }

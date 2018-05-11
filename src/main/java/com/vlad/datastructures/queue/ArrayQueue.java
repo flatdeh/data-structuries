@@ -39,8 +39,21 @@ public class ArrayQueue<T> implements Queue<T> {
     }
 
     private void increaseArray() {
-        T[] newArray = (T[]) new Object[(int) (array.length * 1.5)];
+        T[] newArray = (T[]) new Object[(int) (array.length * 1.5) + 1];
         System.arraycopy(array, 0, newArray, 0, size);
         array = newArray;
     }
+
+    private static class Node<T> {
+        private Node<T> next;
+        private T value;
+
+        private Node() {
+        }
+
+        private Node(T value) {
+            this.value = value;
+        }
+    }
+
 }

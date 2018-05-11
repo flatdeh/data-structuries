@@ -8,10 +8,11 @@ public class ArrayStack<T> implements Stack<T> {
     private int size;
 
     private void increaseArray() {
-        T[] newArray = (T[]) new Object[(int) (array.length * 1.5)];
+        T[] newArray = (T[]) new Object[(int) (array.length * 1.5) + 1];
         System.arraycopy(array, 0, newArray, 0, size);
         array = newArray;
     }
+
     ArrayStack() {
     }
 
@@ -40,7 +41,7 @@ public class ArrayStack<T> implements Stack<T> {
         if (size == 0) {
             throw new NoSuchElementException("Nothing to pop, size = 0");
         }
-        T value = (T) array[size - 1];
+        T value = array[size - 1];
         array[size - 1] = null;
         size--;
         return value;
@@ -49,6 +50,18 @@ public class ArrayStack<T> implements Stack<T> {
     @Override
     public int getSize() {
         return size;
+    }
+
+    private static class Node<T> {
+        private Node<T> prev;
+        private T value;
+
+        private Node() {
+        }
+
+        private Node(T value) {
+            this.value = value;
+        }
     }
 
 }

@@ -38,4 +38,16 @@ public class LinkedQueue<T> implements Queue<T> {
         return size;
     }
 
+    private static class Node<T> {
+        private Node<T> next;
+        private T value;
+
+        private Node() {
+        }
+
+        private Node(T value) {
+            this.value = value;
+        }
+    }
+
 }
