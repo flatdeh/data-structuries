@@ -15,13 +15,8 @@ public class LinkedList<T> extends AbstractList<T> implements Iterable {
     }
 
     public void add(T value, int index) {
-        if (index > size || index < 0) {
-            throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + "(inclusive), but was : " + index);
-        }
-
-        if (value == null) {
-            throw new NullPointerException("Value can not be Null");
-        }
+        validateAddIndex(index);
+        validateValue(value);
 
         Node<T> newNode = new Node<>(value);
         if (size == 0) {
@@ -73,9 +68,7 @@ public class LinkedList<T> extends AbstractList<T> implements Iterable {
     }
 
     public T set(T value, int index) {
-        if (value == null) {
-            throw new NullPointerException("Value can not be Null");
-        }
+        validateValue(value);
         validateIndex(index);
         Node<T> curNode = getNode(index);
         T oldValue = curNode.value;

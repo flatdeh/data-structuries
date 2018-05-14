@@ -21,25 +21,23 @@ public class ArrayList<T> extends AbstractList<T> implements Iterable {
     }
 
     public void add(T value, int index) {
-        if (index > size || index < 0) {
-            throw new IndexOutOfBoundsException("\"index\" should be between 0 and " + size + ", but was : " + index);
-        }
-        if (value == null) {
-            throw new NullPointerException("Value can not be Null");
-        }
+
+        validateAddIndex(index);
+        validateValue(value);
+
         if (size == array.length) {
             increaseArray();
         }
         System.arraycopy(array, index, array, index + 1, size - index);
         array[index] = value;
         size++;
-
     }
 
     public T remove(int index) {
         validateIndex(index);
         T valueToRemove = array[index];
         System.arraycopy(array, index + 1, array, index, size - index);
+        array[size - 1] = null;
         size--;
         return valueToRemove;
     }
@@ -50,9 +48,7 @@ public class ArrayList<T> extends AbstractList<T> implements Iterable {
     }
 
     public T set(T value, int index) {
-        if (value == null) {
-            throw new NullPointerException("Value can not be Null");
-        }
+        validateValue(value);
         validateIndex(index);
 
         T oldValue = array[index];
