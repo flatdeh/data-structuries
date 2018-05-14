@@ -1,6 +1,9 @@
 package com.vlad.datastructures.list;
 
-public class ArrayList<T> extends AbstractList<T> {
+import java.util.Iterator;
+import java.util.StringJoiner;
+
+public class ArrayList<T> extends AbstractList<T> implements Iterable {
     private static final int INITIAL_CAPACITY = 10;
     private T[] array = (T[]) new Object[INITIAL_CAPACITY];
 
@@ -90,32 +93,31 @@ public class ArrayList<T> extends AbstractList<T> {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringJoiner stringJoiner = new StringJoiner(", ", "[", "]");
 
-        if (size > 0) {
-            sb.append("[");
-            for (int i = 0; i < size - 1; i++) {
-                sb.append(array[i]).append(", ");
-            }
-            sb.append(array[size - 1]).append("]");
-        } else {
-            sb.append("[]");
+        for (int i = 0; i < size; i++) {
+            stringJoiner.add(array[i].toString());
         }
 
-        return sb.toString();
+        return stringJoiner.toString();
     }
 
-    private static class Node<T> {
-        private Node<T> next;
-        private Node<T> prev;
-        private T value;
+    @Override
+    public Iterator iterator() {
+        return new ArrayListIterator();
+    }
 
-        private Node() {
+    private class ArrayListIterator implements Iterator {
+        private int count;
+
+        @Override
+        public boolean hasNext() {
+            return count < size;
         }
 
-        private Node(T value) {
-            this.value = value;
+        @Override
+        public T next() {
+            return array[count++];
         }
-
     }
 }

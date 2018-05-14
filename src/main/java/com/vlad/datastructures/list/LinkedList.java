@@ -1,6 +1,9 @@
 package com.vlad.datastructures.list;
 
-public class LinkedList<T> extends AbstractList<T> {
+import java.util.Iterator;
+import java.util.StringJoiner;
+
+public class LinkedList<T> extends AbstractList<T> implements Iterable {
     private Node<T> head;
     private Node<T> tail;
 
@@ -134,18 +137,19 @@ public class LinkedList<T> extends AbstractList<T> {
 
     public String toString() {
         Node<T> newNode = head;
-        StringBuilder sb = new StringBuilder();
-        if (size > 0) {
-            sb.append("[");
-            for (int i = 0; i < size - 1; i++) {
-                sb.append(newNode.value).append(", ");
-                newNode = newNode.next;
-            }
-            sb.append(newNode.value).append("]");
-        } else {
-            sb.append("[]");
+        StringJoiner stringJoiner = new StringJoiner(", ", "[", "]");
+
+        for (int i = 0; i < size; i++) {
+            stringJoiner.add(newNode.value.toString());
+            newNode = newNode.next;
         }
-        return sb.toString();
+
+        return stringJoiner.toString();
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new LinkedListIterator();
     }
 
     private static class Node<T> {
@@ -160,6 +164,22 @@ public class LinkedList<T> extends AbstractList<T> {
             this.value = value;
         }
 
+    }
+
+    private class LinkedListIterator implements Iterator {
+        private Node currentNode = head;
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+
+        @Override
+        public T next() {
+            T value = (T) currentNode.value;
+            currentNode = currentNode.next;
+            return value;
+        }
     }
 
 }
