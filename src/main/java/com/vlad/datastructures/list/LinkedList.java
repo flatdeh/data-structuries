@@ -3,11 +3,11 @@ package com.vlad.datastructures.list;
 import java.util.Iterator;
 import java.util.StringJoiner;
 
-public class LinkedList<T> extends AbstractList<T> implements Iterable {
+public class LinkedList<T> extends AbstractList<T> implements Iterable<T> {
     private Node<T> head;
     private Node<T> tail;
 
-    LinkedList() {
+    public LinkedList() {
     }
 
     public void add(T value) {
@@ -141,7 +141,7 @@ public class LinkedList<T> extends AbstractList<T> implements Iterable {
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return new LinkedListIterator();
     }
 
@@ -159,8 +159,8 @@ public class LinkedList<T> extends AbstractList<T> implements Iterable {
 
     }
 
-    private class LinkedListIterator implements Iterator {
-        private Node currentNode = head;
+    private class LinkedListIterator implements Iterator<T> {
+        private Node<T> currentNode = head;
 
         @Override
         public boolean hasNext() {
@@ -169,7 +169,7 @@ public class LinkedList<T> extends AbstractList<T> implements Iterable {
 
         @Override
         public T next() {
-            T value = (T) currentNode.value;
+            T value = currentNode.value;
             currentNode = currentNode.next;
             return value;
         }

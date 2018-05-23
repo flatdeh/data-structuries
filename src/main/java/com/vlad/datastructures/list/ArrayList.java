@@ -3,15 +3,15 @@ package com.vlad.datastructures.list;
 import java.util.Iterator;
 import java.util.StringJoiner;
 
-public class ArrayList<T> extends AbstractList<T> implements Iterable {
+public class ArrayList<T> extends AbstractList<T> implements Iterable<T> {
     private static final int INITIAL_CAPACITY = 10;
-    private T[] array = (T[]) new Object[INITIAL_CAPACITY];
+    private T[] array;
 
-    ArrayList() {
+    public ArrayList() {
         this(INITIAL_CAPACITY);
     }
 
-    ArrayList(int capacity) {
+    public ArrayList(int capacity) {
         this.array = (T[]) new Object[capacity];
     }
 
@@ -99,21 +99,21 @@ public class ArrayList<T> extends AbstractList<T> implements Iterable {
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return new ArrayListIterator();
     }
 
-    private class ArrayListIterator implements Iterator {
-        private int count;
+    private class ArrayListIterator implements Iterator<T> {
+        private int index;
 
         @Override
         public boolean hasNext() {
-            return count < size;
+            return index < size;
         }
 
         @Override
         public T next() {
-            return array[count++];
+            return array[index++];
         }
     }
 }
