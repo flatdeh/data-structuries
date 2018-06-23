@@ -1,9 +1,8 @@
 package com.vlad.datastructures.hashmap;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
-public class HashMap<K, V> implements Map<K, V> {//, Iterable<HashMap.Entry<K, V>> {
+public class HashMap<K, V> implements Map<K, V>, Iterable<HashMap.Entry<K, V>> {
     private static final int INITIAL_CAPACITY = 5;
     private static final double LOAD_FACTOR = 0.75;
     private Entry<K, V>[] buckets;
@@ -70,10 +69,10 @@ public class HashMap<K, V> implements Map<K, V> {//, Iterable<HashMap.Entry<K, V
     }
 
     public boolean containsKey(K key) {
-        Entry<K,V> bucket;
+        Entry<K, V> bucket;
         if (key == null) {
             bucket = buckets[0];
-            while(bucket!=null) {
+            while (bucket != null) {
                 if (bucket.key == null) {
                     return true;
                 }
@@ -82,7 +81,7 @@ public class HashMap<K, V> implements Map<K, V> {//, Iterable<HashMap.Entry<K, V
         } else {
             int index = getBucketIndex(key, buckets.length);
             bucket = buckets[index];
-            while(bucket!=null) {
+            while (bucket != null) {
                 if (key.equals(bucket.key)) {
                     return true;
                 }
@@ -93,47 +92,50 @@ public class HashMap<K, V> implements Map<K, V> {//, Iterable<HashMap.Entry<K, V
     }
 
     public void putAll(HashMap<K, V> hashMap) {
-//        for (Entry<K, V> entry : hashMap) {
-//            put(entry.key, entry.value);
-//        }
+        for (Entry<K, V> entry : hashMap) {
+            put(entry.key, entry.value);
+        }
     }
 
-//    public void putAllIfAbsent(HashMap<K, V> hashMap) {
-//        for (Entry<K, V> entry : hashMap) {
-//            putIfAbsent(entry.key, entry.value);
-//        }
-//    }
+    public void putAllIfAbsent(HashMap<K, V> hashMap) {
+        for (Entry<K, V> entry : hashMap) {
+            putIfAbsent(entry.key, entry.value);
+        }
+    }
 
-//    public V putIfAbsent(K key, V value) {
-//        if (size >= buckets.length * LOAD_FACTOR) {
-//            growCapacity();
-//        }
-//        if (key == null) {
-//            return putNullIfAbsent(value);
-//        } else {
-//            int index = getBucketIndex(key, buckets.length);
-//            ArrayList<Entry<K, V>> bucket = buckets[index];
-//            for (Entry<K, V> entry : bucket) {
-//                if (key.equals(entry.key)) {
-//                    return entry.value;
-//                }
-//            }
-//            bucket.add(new Entry<>(key, value));
-//            size++;
-//        }
-//        return null;
-//    }
+    public V putIfAbsent(K key, V value) {
+        if (size >= buckets.length * LOAD_FACTOR) {
+            growCapacity();
+        }
+        if (key == null) {
+            return putNullIfAbsent(value);
+        } else {
+            int index = getBucketIndex(key, buckets.length);
+            Entry<K, V> bucket = buckets[index];
+            while (bucket != null) {
+                if (key.equals(bucket.key)) {
+                    return bucket.value;
+                }
+                bucket = bucket.next;
+            }
+            bucket = new Entry<>(key, value);
+            size++;
+        }
+        return null;
+    }
 
-//    private V putNullIfAbsent(V value) {
-//        for (Entry<K, V> entry : buckets[0]) {
-//            if (entry.key == null) {
-//                return entry.value;
-//            }
-//        }
-//        buckets[0].add(new Entry<K, V>(null, value));
-//        size++;
-//        return null;
-//    }
+    private V putNullIfAbsent(V value) {
+        Entry<K, V> bucket = buckets[0];
+        while (bucket != null) {
+            if (bucket.key == null) {
+                return bucket.value;
+            }
+            bucket = bucket.next;
+        }
+        buckets[0] = new Entry<>(null, value);
+        size++;
+        return null;
+    }
 
 
     private void growCapacity() {
@@ -196,10 +198,10 @@ public class HashMap<K, V> implements Map<K, V> {//, Iterable<HashMap.Entry<K, V
         return null;
     }
 
-//    @Override
-//    public Iterator<Entry<K, V>> iterator() {
-//        return new HashMapIterator();
-//    }
+    @Override
+    public Iterator<Entry<K, V>> iterator() {
+        return new HashMapIterator();
+    }
 
     public static class Entry<K, V> {
         private K key;
@@ -241,29 +243,46 @@ public class HashMap<K, V> implements Map<K, V> {//, Iterable<HashMap.Entry<K, V
     }
 
 
-//    private class HashMapIterator implements Iterator<Entry<K, V>> {
-//        private int passedElementsCount;
-//        private int row = 0;
-//        private int column = 0;
-//
-//        @Override
-//        public boolean hasNext() {
-//            return passedElementsCount < size;
-//        }
+    private class HashMapIterator implements Iterator<Entry<K, V>> {
+        private int passedElementsCount;
+        private int bucketIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            return passedElementsCount < size;
+        }
+
+
 //
 //        @Override
 //        public Entry<K, V> next() {
-//            for (; row < buckets.length; ) {
-//                for (; column < buckets[row].size(); ) {
+//            for (; bucketIndex < buckets.length; ) {
+//                for (; column < buckets[bucketIndex].size(); ) {
 //                    passedElementsCount++;
-//                    return buckets[row].get(column++);
+//                    return buckets[bucketIndex].get(column++);
 //                }
-//                row++;
+//                bucketIndex++;
 //                column = 0;
 //            }
 //            passedElementsCount++;
 //            return null;
 //        }
-//
-//    }
+
+
+        @Override
+        public Entry<K, V> next() {
+            for (; bucketIndex < buckets.length; ) {
+                Entry<K, V> bucket = buckets[bucketIndex];
+                while (bucket != null) {
+                    Entry<K, V> prevEntry = bucket;
+                    bucket = bucket.next;
+                    passedElementsCount++;
+                    return prevEntry;
+                }
+                bucketIndex++;
+            }
+            return null;
+        }
+
+    }
 }
