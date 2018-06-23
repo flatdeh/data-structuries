@@ -252,23 +252,6 @@ public class HashMap<K, V> implements Map<K, V>, Iterable<HashMap.Entry<K, V>> {
             return passedElementsCount < size;
         }
 
-
-//
-//        @Override
-//        public Entry<K, V> next() {
-//            for (; bucketIndex < buckets.length; ) {
-//                for (; column < buckets[bucketIndex].size(); ) {
-//                    passedElementsCount++;
-//                    return buckets[bucketIndex].get(column++);
-//                }
-//                bucketIndex++;
-//                column = 0;
-//            }
-//            passedElementsCount++;
-//            return null;
-//        }
-
-
         @Override
         public Entry<K, V> next() {
             for (; bucketIndex < buckets.length; ) {
