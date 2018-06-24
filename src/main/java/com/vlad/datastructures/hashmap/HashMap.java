@@ -36,6 +36,11 @@ public class HashMap<K, V> implements Map<K, V>, Iterable<HashMap.Entry<K, V>> {
                     bucket.value = value;
                     return oldValue;
                 }
+                if (bucket.next == null) {
+                    bucket.next = new Entry<>(key, value);
+                    size++;
+                    return null;
+                }
                 bucket = bucket.next;
             }
             buckets[index] = new Entry<>(key, value);
@@ -116,12 +121,17 @@ public class HashMap<K, V> implements Map<K, V>, Iterable<HashMap.Entry<K, V>> {
                 if (key.equals(bucket.key)) {
                     return bucket.value;
                 }
+                if (bucket.next == null) {
+                    bucket.next = new Entry<>(key, value);
+                    size++;
+                    return null;
+                }
                 bucket = bucket.next;
             }
-            bucket = new Entry<>(key, value);
+            buckets[index] = new Entry<>(key, value);
             size++;
+            return null;
         }
-        return null;
     }
 
     private V putNullIfAbsent(V value) {
@@ -155,9 +165,12 @@ public class HashMap<K, V> implements Map<K, V>, Iterable<HashMap.Entry<K, V>> {
                 } else {
                     Entry<K, V> curEntry = newEntryArray[bucketIndex];
                     while (curEntry != null) {
+                        if (curEntry.next == null) {
+                            curEntry.next = new Entry<>(bucket.key, bucket.value);
+                            break;
+                        }
                         curEntry = curEntry.next;
                     }
-                    curEntry.next = new Entry<>(bucket.key, bucket.value);
                 }
                 bucket = bucket.next;
             }
@@ -246,6 +259,7 @@ public class HashMap<K, V> implements Map<K, V>, Iterable<HashMap.Entry<K, V>> {
     private class HashMapIterator implements Iterator<Entry<K, V>> {
         private int passedElementsCount;
         private int bucketIndex = 0;
+        private Entry<K, V> bucket = buckets[0];
 
         @Override
         public boolean hasNext() {
@@ -255,7 +269,6 @@ public class HashMap<K, V> implements Map<K, V>, Iterable<HashMap.Entry<K, V>> {
         @Override
         public Entry<K, V> next() {
             for (; bucketIndex < buckets.length; ) {
-                Entry<K, V> bucket = buckets[bucketIndex];
                 while (bucket != null) {
                     Entry<K, V> prevEntry = bucket;
                     bucket = bucket.next;
@@ -263,6 +276,9 @@ public class HashMap<K, V> implements Map<K, V>, Iterable<HashMap.Entry<K, V>> {
                     return prevEntry;
                 }
                 bucketIndex++;
+
+                bucket = buckets[bucketIndex];
+
             }
             return null;
         }
